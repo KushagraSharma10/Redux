@@ -6,16 +6,18 @@ const initialState = {
 }
 
 export const productSlice = createSlice({
-    name:"products",
+    name: "products",
     initialState,
-    reducers:{
+    reducers: {
+        
         getproducts: (state, action) => {
             axios
                 .get("https://fakestoreapi.com/products")
-                .then((response)=>{
+                .then((response) => {
                     console.log(response)
+                    state.products = response.data;
                 })
-                .catch((error)=>{
+                .catch((error) => {
                     console.log(error)
                 })
         }
@@ -23,4 +25,4 @@ export const productSlice = createSlice({
 })
 
 export default productSlice.reducer;
-export const {getproducts} =  productSlice.actions;
+export const { getproducts } = productSlice.actions;
