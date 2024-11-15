@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
     products: [],
@@ -7,7 +8,19 @@ const initialState = {
 export const productSlice = createSlice({
     name:"products",
     initialState,
-    reducers:{},
+    reducers:{
+        getproducts: (state, action) => {
+            axios
+                .get("https://fakestoreapi.com/products")
+                .then((response)=>{
+                    console.log(response)
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+        }
+    },
 })
 
-export default productSlice.reducer
+export default productSlice.reducer;
+export const {getproducts} =  productSlice.actions;
